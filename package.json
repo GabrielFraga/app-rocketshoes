@@ -1,5 +1,5 @@
 {
-  "name": "AppLoja",
+  "name": "appLoja",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-navigation/native": "^3.6.2",
     "axios": "^0.19.0",
     "react": "16.9.0",
     "react-icons": "^3.8.0",
