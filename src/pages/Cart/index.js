@@ -1,11 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-import {View} from 'react-native';
+import { Container } from './styles';
 
-// import { Container } from './styles';
-
-export default class Cart extends Component {
-  render() {
-    return <View />;
-  }
+function Cart() {
+  return <Container />;
 }
+export default Cart;

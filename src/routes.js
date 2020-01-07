@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Image, TouchableHighlight } from 'react-native';
+import { Image, Text, TouchableHighlight } from 'react-native';
 import { createAppContainer, withNavigation } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
@@ -25,15 +25,34 @@ const LogoTitle = withNavigation(({ navigation }) => {
 
 const CartButton = withNavigation(({ navigation }) => {
   return (
-    <TouchableHighlight onPress={() => navigation.navigate('Cart')}>
-      <Icon
-        style={{
-          marginRight: 10,
-        }}
-        name="shopping-basket"
-        size={30}
-        color="#fff"
-      />
+    <TouchableHighlight
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+      }}
+      onPress={() => navigation.navigate('Cart')}>
+      <>
+        <Text
+          style={{
+            color: '#fff',
+            borderRadius: 100 / 2,
+            backgroundColor: '#7159c1',
+            width: 20,
+            justifyContent: 'center',
+            textAlign: 'center',
+            marginRight: 2,
+          }}>
+          0
+        </Text>
+        <Icon
+          style={{
+            marginRight: 10,
+          }}
+          name="shopping-basket"
+          size={30}
+          color="#fff"
+        />
+      </>
     </TouchableHighlight>
   );
 });
