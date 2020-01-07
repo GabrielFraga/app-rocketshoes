@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { useNavigation } from '@react-navigation/native';
-
-import { Image, View, TouchableHighlight } from 'react-native';
-import { createAppContainer } from 'react-navigation';
+import { Image, TouchableHighlight } from 'react-native';
+import { createAppContainer, withNavigation } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -13,19 +11,19 @@ import logo from './assets/images/logo1.png';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 
-const LogoTitle = () => {
+const LogoTitle = withNavigation(({ navigation }) => {
   return (
-    <View
+    <TouchableHighlight
       style={{
         marginLeft: 10,
-      }}>
+      }}
+      onPress={() => navigation.navigate('Home')}>
       <Image source={logo} />
-    </View>
+    </TouchableHighlight>
   );
-};
+});
 
-const CartButton = ({ navigation }) => {
-  // const { navigate } = useNavigation();
+const CartButton = withNavigation(({ navigation }) => {
   return (
     <TouchableHighlight onPress={() => navigation.navigate('Cart')}>
       <Icon
@@ -38,7 +36,7 @@ const CartButton = ({ navigation }) => {
       />
     </TouchableHighlight>
   );
-};
+});
 
 const Routes = createAppContainer(
   createStackNavigator(
