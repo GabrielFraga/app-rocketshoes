@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { Image, Text, TouchableHighlight } from 'react-native';
 import { createAppContainer, withNavigation } from 'react-navigation';
@@ -24,6 +25,7 @@ const LogoTitle = withNavigation(({ navigation }) => {
 });
 
 const CartButton = withNavigation(({ navigation }) => {
+  const cartSize = useSelector(state => state.cart.length);
   return (
     <TouchableHighlight
       style={{
@@ -42,7 +44,7 @@ const CartButton = withNavigation(({ navigation }) => {
             textAlign: 'center',
             marginRight: 2,
           }}>
-          0
+          {cartSize || 0}
         </Text>
         <Icon
           style={{

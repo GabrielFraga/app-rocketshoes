@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { addToCartRequest } from '../../store/modules/cart/actions';
 
 import api from '../../services/api';
 // import { formatPrice } from '../../util/format';
@@ -20,6 +22,15 @@ import {
 } from './styles';
 
 function Home() {
+  const dispatch = useDispatch();
+
+  const amount = useSelector(state =>
+    state.cart.reduce((amount, product) => {
+      amount[product.id] = product.amount;
+      return amount;
+    }, {}),
+  );
+
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -34,6 +45,10 @@ function Home() {
       setProducts(apiProducts);
     })();
   }, []);
+
+  function handleAddProduct(id) {
+    dispatch(addToCartRequest(id));
+  }
 
   return (
     <Container>
@@ -50,10 +65,10 @@ function Home() {
             />
             <ProductTitle>{item.title}</ProductTitle>
             <PriceTag>{item.priceFormatted}</PriceTag>
-            <AddProductButton>
+            <AddProductButton onPress={() => handleAddProduct(item.id)}>
               <CartIcon>
                 <Icon name="add-shopping-cart" size={18} color="#fff" />
-                <ItemNumber>0</ItemNumber>
+                <ItemNumber>{amount[item.id] || 0}</ItemNumber>
               </CartIcon>
               <ButtonName>
                 <ButtonTitle>ADICIONAR</ButtonTitle>
