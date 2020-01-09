@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { addToCartRequest } from '../../store/modules/cart/actions';
+import Background from '../../components/Background';
 
 import api from '../../services/api';
 // import { formatPrice } from '../../util/format';
 
 import {
   ProductList,
-  Container,
   List,
   ProductImage,
   ProductTitle,
@@ -51,7 +51,7 @@ function Home() {
   }
 
   return (
-    <Container>
+    <Background>
       <ProductList
         data={products}
         keyExtractor={product => product.id}
@@ -77,7 +77,7 @@ function Home() {
           </List>
         )}
       />
-    </Container>
+    </Background>
   );
 }
 export default Home;
