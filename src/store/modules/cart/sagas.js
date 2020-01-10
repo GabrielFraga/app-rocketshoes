@@ -2,6 +2,7 @@ import { call, put, select, all, takeLatest } from 'redux-saga/effects';
 
 import { Alert } from 'react-native';
 
+import { formatPrice } from '../../../util/format';
 import api from '../../../services/api';
 
 import { addToCartSuccess, updateAmountSuccess } from './actions';
@@ -31,10 +32,9 @@ function* addToCart({ id }) {
     const data = {
       ...response.data,
       amount: 1,
-      priceFormatted: `R$ ${response.data.price}`,
+      priceFormatted: formatPrice(response.data.price),
     };
     yield put(addToCartSuccess(data));
-    // history.push('/cart');
   }
 }
 

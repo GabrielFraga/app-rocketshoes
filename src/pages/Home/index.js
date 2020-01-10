@@ -6,7 +6,7 @@ import { addToCartRequest } from '../../store/modules/cart/actions';
 import Background from '../../components/Background';
 
 import api from '../../services/api';
-// import { formatPrice } from '../../util/format';
+import { formatPrice } from '../../util/format';
 
 import {
   ProductList,
@@ -38,8 +38,7 @@ function Home() {
       const response = await api.get('products');
       const apiProducts = response.data.map(product => ({
         ...product,
-        priceFormatted: `R$${product.price}`,
-        // priceFormatted: formatPrice(product.price),
+        priceFormatted: formatPrice(product.price),
       }));
 
       setProducts(apiProducts);
